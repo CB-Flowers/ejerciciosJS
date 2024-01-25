@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejercicio 2</title>
+</head>
+<body>
+
+    <label>Elementos:</label> <br>
+    <textarea id="inicio" name="inicio" maxLength="250" rows="5" style="width:500px">"unacadena",3, 9,"example",10,500,1, "tareas",12, true'
+    </textarea>
+    <br>
+    <button onclick="ejecutarElementos()" > GENERAR</button>
+    <button onclick="limpiarElementos()" > LIMPIAR</button>
+    <br><br>
+    <label>Resutado:</label>
+    <label id="resultado" name="resultado">--</label>
+
+</body>
+</html>
+
+ <script>
+        function ejecutarElementos(){
+            
+            document.getElementById("resultado").textContent = "";
+  
+        	let cadena = document.getElementById("inicio").value;
+            let detalle = cadena.split(",");
+            
+            var n = detalle.length;
+           
+            if(n > 1){
+                for (var i = 0; i < n - 1; i++) {
+                      var minIndex = i;
+                
+                      for (var j = i + 1; j < n; j++) {
+                        if (typeof detalle[j] === 'number' && typeof detalle[minIndex] === 'number' && detalle[j] < detalle[minIndex]) {
+                          minIndex = j;
+                        }
+                      }
+                
+                      if (minIndex !== i) {
+                        var temp = detalle[i];
+                        detalle[i] = detalle[minIndex];
+                        detalle[minIndex] = temp;
+                      }
+                }
+                var numerosOrdenados = detalle.filter(function(item) {
+                        let number = parseInt(item);
+                        if(number <= 0 ||  number > 0)
+                          return true;
+                        else
+                          return false;
+                });
+                
+                 var nu = numerosOrdenados.length;
+                 if(nu > 0)
+                   document.getElementById("resultado").textContent = numerosOrdenados;
+                 else  
+                   document.getElementById("resultado").textContent = "No hay elementos númericos";
+            }else{
+                alert("Ingrese elementos");
+                document.getElementById("resultado").textContent = "";
+            }
+            
+        }
+        
+        function limpiarElementos(){
+        
+            document.getElementById("inicio").value = "";
+            document.getElementById("resultado").textContent = ""; 
+            
+        }
+</script>

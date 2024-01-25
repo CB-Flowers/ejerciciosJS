@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejercicio 1</title>
+</head>
+<body>
+
+    <label>N° de Elementos:</label>
+    <input id="numero" name="numero" value="5" type="number" min="3" max="500" />
+	<br><br>
+    <button onclick="ejecutarSerie()" > GENERAR SERIE</button>
+    <button onclick="limpiarSerie()" > LIMPIAR</button>
+    <br><br>
+    <label>Resutado:</label>
+    <label id="serie" name="serie">--</label>
+
+</body>
+</html>
+
+ <script>
+        function ejecutarSerie(){
+            
+            document.getElementById("serie").textContent = "";
+            
+         	let serie = "";
+        	let numeroDeElementos = document.getElementById("numero").value; 
+        
+            if(numeroDeElementos < 3)
+               alert("Ingrese N° de Elementos desde 3")
+            else{
+                let a = 0;
+                let b = 1;
+          
+            	serie = a+"  "+b;
+    
+                for (var i = 2; i < numeroDeElementos; i++) {
+                    var temp = a + b;
+                    serie += "  "+temp;
+                    a = b;
+                    b = temp;
+                }
+            }
+        
+            document.getElementById("serie").textContent = serie;
+            
+        }
+        
+        function limpiarSerie(){
+            
+            document.getElementById("serie").textContent = "---";
+            document.getElementById("numero").value = ""; 
+            
+        }
+</script>
